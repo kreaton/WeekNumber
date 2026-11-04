@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# The version is derived from the latest release, so two runs must never overlap.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write # create the GitHub release and upload its assets
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # vpk is a .NET tool; the Rust toolchain is already on the runner
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      # Keep this version in step with the velopack crate in Cargo.toml.
+      - name: Install vpk
+        run: dotnet tool install -g vpk --version 1.2.161
+
+      - name: Build, pack and publish
+        shell: pwsh
+        run: ./BuildRelease.ps1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
