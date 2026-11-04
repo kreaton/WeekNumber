@@ -27,6 +27,8 @@
 // Without this line Windows would open a console window next to our app.
 #![windows_subsystem = "windows"]
 
+mod update;
+
 use std::cell::Cell;
 use std::ffi::c_void;
 use std::mem::{size_of, size_of_val, zeroed};
@@ -149,6 +151,10 @@ fn app<R>(f: impl FnOnce(&App) -> R) -> R {
 // ---------------------------------------------------------------------------
 
 fn main() {
+    // Must be the first thing to run: handles Velopack's install/update/uninstall hooks and
+    // may exit the process.
+    velopack::VelopackApp::build().run();
+
     unsafe {
         // Tell Windows we handle display scaling ourselves. Without this, Windows would
         // render us at 100% and stretch the result on high-DPI screens, making it blurry.
@@ -674,9 +680,9 @@ struct Layout {
     row_h: i32,
     /// Height of the "Today: …" line.
     footer_h: i32,
-    /// Space around the separator line above Exit.
+    /// Space around the separator line above the menu items.
     sep_h: i32,
-    /// Height of the Exit menu item.
+    /// Height of each menu item (Check for updates, Exit).
     item_h: i32,
     cell_w: i32,
     width: i32,
@@ -708,7 +714,7 @@ impl Layout {
             item_h,
             cell_w,
             width: 2 * pad + COLS * cell_w,
-            height: pad + header_h + dow_h + ROWS * row_h + footer_h + sep_h + item_h + bottom,
+            height: pad + header_h + dow_h + ROWS * row_h + footer_h + sep_h + 2 * item_h + bottom,
             scale: dpi as i32,
         }
     }
@@ -752,15 +758,23 @@ impl Layout {
         let t = self.footer_top() + self.px(2);
         rect(self.pad, t, self.width - self.pad, t + self.footer_h - self.px(4))
     }
-    /// Y coordinate of the menu-style separator line above the Exit item.
+    /// Y coordinate of the menu-style separator line above the menu items.
     fn separator_y(&self) -> i32 {
         self.footer_top() + self.footer_h + self.sep_h / 2
     }
-    /// The Exit item; nearly full-width like a menu item.
-    fn exit_btn(&self) -> RECT {
-        let t = self.footer_top() + self.footer_h + self.sep_h;
+    /// One menu item below the separator (0 = first); nearly full-width like a real menu.
+    fn menu_item(&self, index: i32) -> RECT {
+        let t = self.footer_top() + self.footer_h + self.sep_h + index * self.item_h;
         let inset = self.px(4);
         rect(inset, t, self.width - inset, t + self.item_h)
+    }
+    /// The "Check for updates" item.
+    fn update_btn(&self) -> RECT {
+        self.menu_item(0)
+    }
+    /// The Exit item.
+    fn exit_btn(&self) -> RECT {
+        self.menu_item(1)
     }
     /// The rounded highlight drawn behind a hovered element.
     ///
@@ -777,6 +791,7 @@ impl Layout {
             Hit::Prev => Some(square(self.prev())),
             Hit::Next => Some(square(self.next())),
             Hit::Today => Some(self.today_btn()),
+            Hit::Update => Some(self.update_btn()),
             Hit::Exit => Some(self.exit_btn()),
             Hit::None => None,
         }
@@ -788,6 +803,8 @@ impl Layout {
             Hit::Prev
         } else if inside(self.next()) {
             Hit::Next
+        } else if inside(self.update_btn()) {
+            Hit::Update
         } else if inside(self.exit_btn()) {
             Hit::Exit
         } else if inside(self.today_btn()) {
@@ -808,6 +825,7 @@ enum Hit {
     Prev,
     Next,
     Today,
+    Update,
     Exit,
     None,
 }
@@ -929,6 +947,11 @@ unsafe extern "system" fn popup_proc(hwnd: HWND, msg: u32, wp: WPARAM, lp: LPARA
                     Hit::Prev => shift_month(-1),
                     Hit::Next => shift_month(1),
                     Hit::Today => app(|a| a.shown.set(first_of_month(today()))),
+                    Hit::Update => {
+                        hide_popup();
+                        update::check(app(|a| a.tray.get()));
+                        return 0;
+                    }
                     Hit::Exit => {
                         // Destroying the tray window triggers its WM_DESTROY handler,
                         // which removes the icon and ends the message loop.
@@ -1085,7 +1108,7 @@ unsafe fn draw_calendar(dc: HDC, canvas: &Canvas, client: &RECT, l: &Layout) {
         canvas.round_rect_i(rect(l.pad, l.dow_top(), l.pad + l.cell_w, l.footer_top()), radius, t.week_bg);
         // Thin line under the day names.
         fill(dc, &rect(l.pad, l.grid_top() - 1, l.width - l.pad, l.grid_top()), t.line);
-        // Full-width separator above Exit, like in a Windows menu.
+        // Full-width separator above the menu items, like in a Windows menu.
         let sep = l.separator_y();
         fill(dc, &rect(0, sep, l.width, sep + 1), t.line);
         // `if let` runs the block only if `hover_rect` returned `Some`, binding the value to `r`.
@@ -1159,7 +1182,7 @@ unsafe fn draw_calendar(dc: HDC, canvas: &Canvas, client: &RECT, l: &Layout) {
             }
         }
 
-        // Footer: today line, then the Exit item below the separator.
+        // Footer: today line, then the menu items below the separator.
         SelectObject(dc, font);
         let today_text = format!(
             "Today: {} \u{00B7} Week {}",
@@ -1170,6 +1193,9 @@ unsafe fn draw_calendar(dc: HDC, canvas: &Canvas, client: &RECT, l: &Layout) {
         let mut tr = l.today_btn();
         tr.left += l.px(8);
         draw_text(dc, &today_text, tr, t.accent, DT_LEFT);
+        let mut ur = l.update_btn();
+        ur.left = l.pad + l.px(8);
+        draw_text(dc, "Check for updates", ur, t.fg, DT_LEFT);
         let mut er = l.exit_btn();
         er.left = l.pad + l.px(8);
         draw_text(dc, "Exit", er, t.fg, DT_LEFT);
