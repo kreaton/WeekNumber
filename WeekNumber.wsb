@@ -1,0 +1,14 @@
+<Configuration>
+  <!-- Opens a throwaway Windows Sandbox with the release build mapped in and starts the app. -->
+  <MappedFolders>
+    <MappedFolder>
+      <HostFolder>C:\Users\perhe\source\WeekNumber\target\release</HostFolder>
+      <SandboxFolder>C:\WeekNumber</SandboxFolder>
+      <ReadOnly>true</ReadOnly>
+    </MappedFolder>
+  </MappedFolders>
+  <Networking>Disable</Networking>
+  <LogonCommand>
+    <Command>C:\WeekNumber\weeknumber.exe</Command>
+  </LogonCommand>
+</Configuration>
