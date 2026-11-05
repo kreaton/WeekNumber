@@ -1,6 +1,15 @@
 # WeekNumber
 
-Always know what week it is. WeekNumber shows the current week number as a small icon in the Windows notification area, and one click opens a calendar with week numbers.
+[![Release](https://img.shields.io/github/v/release/kreaton/WeekNumber)](https://github.com/kreaton/WeekNumber/releases/latest)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+![Windows](https://img.shields.io/badge/platform-Windows-lightgrey)
+![Rust](https://img.shields.io/badge/built%20with-Rust-lightgrey)
+
+![WeekNumber: always know what week it is](images/banner.png)
+
+**Always know what week it is.**
+
+WeekNumber shows the current week number as a small icon in the Windows notification area, and one click opens a calendar with week numbers.
 
 Week numbers follow the ISO 8601 standard used in most of Europe, where weeks start on Monday.
 
