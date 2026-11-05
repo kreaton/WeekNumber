@@ -1,6 +1,6 @@
 # BuildRelease.ps1
 # Builds the next version, packs it with Velopack and publishes it as a GitHub release.
-# GitHub Actions runs this on every push to master (.github/workflows/release.yml).
+# GitHub Actions runs this on every push to main (.github/workflows/release.yml).
 #   .\BuildRelease.ps1             build, pack and upload
 #   .\BuildRelease.ps1 -LocalOnly  build and pack into .\Releases only
 #
