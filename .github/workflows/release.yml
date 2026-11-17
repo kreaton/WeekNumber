@@ -26,7 +26,7 @@ jobs:
 
       # Keep this version in step with the velopack crate in Cargo.toml.
       - name: Install vpk
-        run: dotnet tool install -g vpk --version 1.2.161
+        run: dotnet tool install -g vpk --version 1.3.39-g8d2844f
 
       - name: Build, pack and publish
         shell: pwsh

@@ -5,7 +5,7 @@
 #   .\BuildRelease.ps1 -LocalOnly  build and pack into .\Releases only
 #
 # Requires the vpk tool, matching the velopack crate version in Cargo.toml:
-#   dotnet tool install -g vpk --version 1.2.161
+#   dotnet tool install -g vpk --version 1.3.39-g8d2844f
 # and, unless -LocalOnly, a GitHub token: $env:GH_TOKEN in CI, otherwise the GitHub CLI (gh auth login).
 param([switch]$LocalOnly)
 

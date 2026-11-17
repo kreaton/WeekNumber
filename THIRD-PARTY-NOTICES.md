@@ -9,11 +9,11 @@ _Last reviewed: 2026-11-17. Versions are the ones resolved in this repository at
 | Library | Version | Licence | Source | Modified |
 |---|---|---|---|---|
 | chrono | 0.4.45 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/chrono/0.4.45) | No |
-| velopack | 1.2.161 | MIT | [crates.io](https://crates.io/crates/velopack/1.2.161) | No |
+| velopack | 1.3.39-g8d2844f | MIT | [crates.io](https://crates.io/crates/velopack/1.3.39-g8d2844f) | No |
 | windows-sys | 0.61.2 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/windows-sys/0.61.2) | No |
 
 <details>
-<summary>Indirect (transitive) dependencies — 147 packages</summary>
+<summary>Indirect (transitive) dependencies — 148 packages</summary>
 
 Rust links these crates statically into the executable. All are used unmodified.
 
@@ -31,11 +31,11 @@ Rust links these crates statically into the executable. All are used unmodified.
 | cfg-if | 1.0.5 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/cfg-if/1.0.5) | No |
 | chacha20 | 0.10.2 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/chacha20/0.10.2) | No |
 | const-oid | 0.10.2 | Apache-2.0 OR MIT | [crates.io](https://crates.io/crates/const-oid/0.10.2) | No |
+| constant_time_eq | 0.6.1 | CC0-1.0 OR MIT-0 OR Apache-2.0 | [crates.io](https://crates.io/crates/constant_time_eq/0.6.1) | No |
 | core-foundation-sys | 0.8.7 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/core-foundation-sys/0.8.7) | No |
 | cpufeatures | 0.3.1 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/cpufeatures/0.3.1) | No |
 | crc32fast | 1.5.4 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/crc32fast/1.5.4) | No |
 | crypto-common | 0.2.2 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/crypto-common/0.2.2) | No |
-| derivative | 2.2.0 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/derivative/2.2.0) | No |
 | digest | 0.11.3 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/digest/0.11.3) | No |
 | displaydoc | 0.2.7 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/displaydoc/0.2.7) | No |
 | equivalent | 1.0.3 | Apache-2.0 OR MIT | [crates.io](https://crates.io/crates/equivalent/1.0.3) | No |
@@ -73,6 +73,7 @@ Rust links these crates statically into the executable. All are used unmodified.
 | log | 0.4.34 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/log/0.4.34) | No |
 | memchr | 2.8.3 | Unlicense OR MIT | [crates.io](https://crates.io/crates/memchr/2.8.3) | No |
 | miniz_oxide | 0.9.1 | MIT OR Zlib OR Apache-2.0 | [crates.io](https://crates.io/crates/miniz_oxide/0.9.1) | No |
+| nix | 0.32.0 | MIT | [crates.io](https://crates.io/crates/nix/0.32.0) | No |
 | normpath | 1.5.2 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/normpath/1.5.2) | No |
 | num-traits | 0.2.19 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/num-traits/0.2.19) | No |
 | once_cell | 1.21.4 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/once_cell/1.21.4) | No |
@@ -104,14 +105,13 @@ Rust links these crates statically into the executable. All are used unmodified.
 | smallvec | 1.16.4 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/smallvec/1.16.4) | No |
 | stable_deref_trait | 1.2.1 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/stable_deref_trait/1.2.1) | No |
 | subtle | 2.6.1 | BSD-3-Clause | [crates.io](https://crates.io/crates/subtle/2.6.1) | No |
-| syn | 1.0.109 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/syn/1.0.109) | No |
 | syn | 2.0.119 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/syn/2.0.119) | No |
 | syn | 3.0.9 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/syn/3.0.9) | No |
 | synstructure | 0.14.0 | MIT | [crates.io](https://crates.io/crates/synstructure/0.14.0) | No |
 | thiserror | 2.0.21 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/thiserror/2.0.21) | No |
 | thiserror-impl | 2.0.21 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/thiserror-impl/2.0.21) | No |
 | tinystr | 0.8.5 | Unicode-3.0 | [crates.io](https://crates.io/crates/tinystr/0.8.5) | No |
-| typed-path | 0.12.4 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/typed-path/0.12.4) | No |
+| typed-path | 0.13.0 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/typed-path/0.13.0) | No |
 | typenum | 1.20.1 | MIT OR Apache-2.0 | [crates.io](https://crates.io/crates/typenum/1.20.1) | No |
 | unicode-ident | 1.0.27 | (MIT OR Apache-2.0) AND Unicode-3.0 | [crates.io](https://crates.io/crates/unicode-ident/1.0.27) | No |
 | untrusted | 0.9.0 | ISC | [crates.io](https://crates.io/crates/untrusted/0.9.0) | No |
@@ -159,10 +159,11 @@ Rust links these crates statically into the executable. All are used unmodified.
 | zerofrom | 0.1.8 | Unicode-3.0 | [crates.io](https://crates.io/crates/zerofrom/0.1.8) | No |
 | zerofrom-derive | 0.1.8 | Unicode-3.0 | [crates.io](https://crates.io/crates/zerofrom-derive/0.1.8) | No |
 | zeroize | 1.9.1 | Apache-2.0 OR MIT | [crates.io](https://crates.io/crates/zeroize/1.9.1) | No |
+| zeroize_derive | 1.5.0 | Apache-2.0 OR MIT | [crates.io](https://crates.io/crates/zeroize_derive/1.5.0) | No |
 | zerotrie | 0.2.5 | Unicode-3.0 | [crates.io](https://crates.io/crates/zerotrie/0.2.5) | No |
 | zerovec | 0.11.9 | Unicode-3.0 | [crates.io](https://crates.io/crates/zerovec/0.11.9) | No |
 | zerovec-derive | 0.11.7 | Unicode-3.0 | [crates.io](https://crates.io/crates/zerovec-derive/0.11.7) | No |
-| zip | 8.6.0 | MIT | [crates.io](https://crates.io/crates/zip/8.6.0) | No |
+| zip | 9.6.1 | MIT | [crates.io](https://crates.io/crates/zip/9.6.1) | No |
 | zlib-rs | 0.6.8 | Zlib | [crates.io](https://crates.io/crates/zlib-rs/0.6.8) | No |
 | zmij | 1.0.23 | MIT | [crates.io](https://crates.io/crates/zmij/1.0.23) | No |
 | zopfli | 0.8.4 | Apache-2.0 | [crates.io](https://crates.io/crates/zopfli/0.8.4) | No |
