@@ -68,7 +68,7 @@ The result is `target\release\weeknumber.exe`. The C runtime is linked staticall
 
 ### Releases
 
-Every push to `main` builds the app on GitHub Actions and publishes a new release, one patch version higher than the last (`.github/workflows/release.yml`). To push without releasing, add `[skip ci]` to the commit message. You can also start a release by hand from the repository's Actions tab, or run `.\BuildRelease.ps1` locally. Add `-LocalOnly` to build without uploading.
+Every push to `main` builds the app on GitHub Actions and publishes a new release, one patch version higher than the last (`.github/workflows/release.yml`). To push without releasing, add `[skip ci]` to the commit message. You can also start a release by hand from the repository's Actions tab, or run `.\BuildRelease.ps1` locally. Add `-LocalOnly` to build without uploading. The script needs the Velopack `vpk` tool, in the same version as the `velopack` crate; the comment at the top of the script has the install command.
 
 The repository must stay public, because **Check for updates** reads its releases without logging in.
 
