@@ -4,6 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ![Windows](https://img.shields.io/badge/platform-Windows-lightgrey)
 ![Rust](https://img.shields.io/badge/built%20with-Rust-lightgrey)
+[![GitHub stars](https://img.shields.io/github/stars/kreaton/WeekNumber?style=flat&logo=github&color=yellow)](https://github.com/kreaton/WeekNumber/stargazers)
+
+⭐ If WeekNumber earns a place on your machine, [star it on GitHub](https://github.com/kreaton/WeekNumber) — it's free, made by one developer, and stars are how other people find it.
 
 ![WeekNumber: always know what week it is](images/banner.png)
 
